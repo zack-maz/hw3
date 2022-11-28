@@ -5,19 +5,21 @@
 //*********************************************
 
 
-void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot)
+/*void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot)
 {
-    
-    if (head == NULL) //set head to empty at the end
+    //DOES HEAD NEED TO BE EMPTY?
+    if (head == nullptr) 
     {
-        if (smaller != NULL) smaller->next = NULL; 
-        if (larger != NULL) larger->next = NULL;
+        //smaller = nullptr;
+        //larger = nullptr;
+        if (smaller != nullptr) smaller->next = nullptr; 
+        if (larger != nullptr) larger->next = nullptr;
         return;
     }
 
     if (head->val > pivot) 
     {
-        if (larger == NULL) //fill first node of larger 
+        if (larger == nullptr) 
         {
             larger = head;
             head = head->next;
@@ -32,7 +34,7 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot)
     }
     else
     {
-        if (smaller == NULL)  //fill first node of smaller
+        if (smaller == nullptr) 
         {
             smaller = head;
             head = head->next;
@@ -44,6 +46,37 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot)
             head = head->next;
             llpivot(head, smaller->next, larger, pivot);
         }
+    }
+
+
+}*/
+
+
+
+
+
+
+
+
+
+
+void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot)
+{
+    larger = nullptr;
+    smaller = nullptr;
+    if (head == nullptr) return;
+
+    if (head->val > pivot) 
+    {
+        larger = head;
+        head = head->next;
+        llpivot(head, smaller, larger->next, pivot);
+    }
+    else
+    {
+          smaller = head;
+          head = head->next;
+          llpivot(head, smaller->next, larger, pivot);
     }
 
 
